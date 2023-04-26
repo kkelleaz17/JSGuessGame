@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+    body{
+        margin: 0px;
+        font-family: 'Bungee', cursive;
+    }
+    .TOP{
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 30px;
+    }
+    .SCORES{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .SCORES p{
+        margin-left: 20px;
+    }
+</style>
+    <body id="BODY">
+        <div class="TOP">
+            <div class="SCORES">
+                <p id="HS">HS: 0</p>
+                <p id="GS">Guesses: 0</p>
+                <p id="SCORE">SCORE: 0</p>
+            </div>
+            <p id="RESULT">Type a number!</p>
+            <div>
+                <input id="NUM">
+                <button id="ENTER">Enter</button>
+            </div>
+
+        </div>
+
+    </body>
+    <script>
+  var RND = Math.round((Math.random()*99)+1);
+  document.getElementById("ENTER").addEventListener("click",()=>{
+    var NUM = document.getElementById("NUM").value;
+    GUESS++;
+    document.getElementById("GS").innerHTML = 'Guesses '+GUESS
+    if(NUM == RND){
+        RND = Math.round((Math.random()*99)+1);
+        document.getElementById("RESULT").innerHTML = "Correct! The number was "+NUM;
+        SCORE++;
+    }else{
+        if(NUM > RND){
+            document.getElementById("RESULT").innerHTML = "The number is less than " + NUM
+        }else if(NUM < RND){
+            document.getElementById("RESULT").innerHTML = "The number is greater than " + NUM
+        }
+        else{
+        document.getElementById("RESULT").innerHTML = "Wrong!"
+        }
+        SCORE = 0;
+        GUESS = SCORE;
+    }
+    
+    if(SCORE > HIGHSCORE){
+        HIGHSCORE = SCORE;
+    }else{
+
+    }
+    document.getElementById("SCORE").innerHTML = "SCORE: "+SCORE;
+    document.getElementById("HS").innerHTML = "HS: "+HIGHSCORE;
+  })
+var GUESS = 0;
+  var SCORE = 0;
+  var HIGHSCORE = 0;
+
+
+
+
+
+
+
+    document.getElementById("BODY").style.backgroundColor = "rgb("+RANDOMNUM()+","+RANDOMNUM()+","+RANDOMNUM()+")";
+setInterval(() => {
+    document.getElementById("BODY").style.backgroundColor = "rgb("+RANDOMNUM()+","+RANDOMNUM()+","+RANDOMNUM()+")";
+}, 1000);
+function RANDOMNUM(){
+        return Math.round((Math.random()*255));
+    }
+</script>
+</html>
